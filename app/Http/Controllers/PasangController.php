@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Pasang;
+use App\Http\Requests\PasangRequest;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class PasangController extends Controller
 {
@@ -13,7 +16,10 @@ class PasangController extends Controller
      */
     public function index()
     {
-        //
+        $pasang = Pasang::all();
+        return view('pages.pasang.index')->with([
+            'pasang' => $pasang
+        ]);
     }
 
     /**
@@ -23,7 +29,7 @@ class PasangController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.pasang.create');
     }
 
     /**
@@ -32,9 +38,11 @@ class PasangController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PasangRequest $request)
     {
-        //
+        Pasang::create($request->validated());
+
+        return redirect()->route('pasang');
     }
 
     /**
@@ -56,7 +64,10 @@ class PasangController extends Controller
      */
     public function edit($id)
     {
-        //
+        $pasang =  Pasang::findOrFail($id);
+        return view('pages.pasang.edit')->with([
+            'pasang' => $pasang
+        ]);
     }
 
     /**
@@ -66,9 +77,12 @@ class PasangController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PasangRequest $request, $id)
     {
-        //
+        $pasang = Pasang::findOrFail($id);
+        $pasang->update($request->validated());
+
+        return redirect()->route('pasang');
     }
 
     /**
@@ -79,6 +93,9 @@ class PasangController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $pasang = Pasang::findOrFail($id);
+        $pasang->delete();
+
+        return redirect()->route('pasang');
     }
 }

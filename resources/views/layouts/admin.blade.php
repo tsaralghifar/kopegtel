@@ -89,7 +89,7 @@ to get the desired effect
               </a>
             </li>
             <li class="nav-item">
-              <a href="" class="nav-link">
+              <a href="{{route('pasang')}}" class="nav-link">
                 <i class="nav-icon fas fa-map"></i>
                 <p>
                   Pasang Baru

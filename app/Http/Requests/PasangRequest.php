@@ -13,7 +13,7 @@ class PasangRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,11 @@ class PasangRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'no_inet' => 'required|max:225',
+            'nama_pelanggan' => 'required|max:225',
+            'paket' => 'required|max:225',
+            'alamat' => 'required|max:225',
+            'telp' => 'required|max:225'
         ];
     }
 }
