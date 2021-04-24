@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pasang;
+use App\Models\Layanan;
 use App\Http\Requests\PasangRequest;
 use Barryvdh\DomPDF\Facade as PDF;
 
@@ -28,8 +29,8 @@ class PasangController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('pages.pasang.create');
+    {   $layanan = Layanan::all();
+        return view('pages.pasang.create', compact('layanan'));
     }
 
     /**
@@ -64,9 +65,11 @@ class PasangController extends Controller
      */
     public function edit($id)
     {
+        $layanan = Layanan::all();
         $pasang =  Pasang::findOrFail($id);
         return view('pages.pasang.edit')->with([
-            'pasang' => $pasang
+            'pasang' => $pasang,
+            'layanan' => $layanan
         ]);
     }
 

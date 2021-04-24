@@ -35,13 +35,17 @@
                                    @error('nama_pelanggan') <div class="text-muted">{{ $message }}</div> @enderror
                         </div>
                         <div class="form-group">
-                            <label>Paket</label>
-                            <input type="text"
-                                   name="paket"
-                                   value="{{ old('paket') ? old('paket') : $pasang->paket }}"
-                                   class="form-control @error('paket') is-invalid @enderror"/>
-                                   @error('paket') <div class="text-muted">{{ $message }}</div> @enderror
-                        </div>
+							<label>Nama Paket</label>
+							<select name="paket" id="paket" class="form-control @error('paket') is-invalid @enderror">
+								<option value=""> ** Daftar Paket ** </option>
+							@foreach($layanan as $service)
+								<option value="{{ $service->id }}" @if($pasang->paket == $service->id) selected @endif>{{ $service->nama_layanan }}</option>
+							@endforeach
+							</select>
+							@error('paket') 
+								<div class="text-danger">{{ $message }}</div> 
+							@enderror
+						</div>
                         <div class="form-group">
                             <label>Alamat</label>
                             <input type="text"

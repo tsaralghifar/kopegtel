@@ -60,7 +60,7 @@
                 <td>{{ $loop->iteration }}</td>
                 <td>{{$data->no_inet}}</td>
                 <td>{{$data->nama_pelanggan}}</td>
-                <td>{{$data->paket}}</td>
+                <td>{{$data->layanan->nama_layanan}}</td>
                 <td>{{$data->alamat}}</td>
                 <td>{{$data->telp}}</td>
                 <td class="text-center">

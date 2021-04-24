@@ -18,4 +18,9 @@ class Pasang extends Model
         'alamat',
         'telp'
     ];
+
+    public function layanan()
+    {
+        return $this->belongsTo(Layanan::class, 'paket', 'id');
+    }
 }
