@@ -13,7 +13,7 @@ class LayananRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,9 @@ class LayananRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'nama_layanan' => 'required|max:225',
+            'biaya' => 'required|max:225',
+            'desc' => 'required|max:225'
         ];
     }
 }

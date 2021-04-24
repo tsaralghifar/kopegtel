@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Layanan;
+use App\Http\Requests\LayananRequest;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class LayananController extends Controller
 {
@@ -13,7 +16,10 @@ class LayananController extends Controller
      */
     public function index()
     {
-        //
+        $layanan = Layanan::all();
+        return view('pages.layanan.index')->with([
+            'layanan' => $layanan
+        ]);
     }
 
     /**
@@ -23,7 +29,7 @@ class LayananController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.layanan.create');
     }
 
     /**
@@ -32,9 +38,11 @@ class LayananController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(LayananRequest $request)
     {
-        //
+        Layanan::create($request->validated());
+
+        return redirect()->route('layanan');
     }
 
     /**
@@ -56,7 +64,10 @@ class LayananController extends Controller
      */
     public function edit($id)
     {
-        //
+        $layanan =  Layanan::findOrFail($id);
+        return view('pages.layanan.edit')->with([
+            'layanan' => $layanan
+        ]);
     }
 
     /**
@@ -66,9 +77,12 @@ class LayananController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(LayananRequest $request, $id)
     {
-        //
+        $layanan = Layanan::findOrFail($id);
+        $layanan->update($request->validated());
+
+        return redirect()->route('layanan');
     }
 
     /**
@@ -79,6 +93,9 @@ class LayananController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $layanan = Layanan::findOrFail($id);
+        $layanan->delete();
+
+        return redirect()->route('layanan');
     }
 }
