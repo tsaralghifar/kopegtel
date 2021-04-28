@@ -38,4 +38,12 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
  Route::get('/layanan/edit/{id}', [App\Http\Controllers\LayananController::class, 'edit'])->name('layanan.edit');
  Route::put('/layanan/update/{id}', [App\Http\Controllers\LayananController::class, 'update'])->name('layanan.update');
  Route::delete('/layanan/destroy/{id}', [App\Http\Controllers\LayananController::class, 'destroy'])->name('layanan.destroy');
+ // Teknisi
+ Route::get('/teknisi', [App\Http\Controllers\TeknisiController::class, 'index'])->name('teknisi');
+ Route::get('/teknisi/pdf', [App\Http\Controllers\TeknisiController::class, 'createPDF'])->name('teknisi.pdf');
+ Route::get('/teknisi/create', [App\Http\Controllers\TeknisiController::class, 'create'])->name('teknisi.create');
+ Route::post('/teknisi/store', [App\Http\Controllers\TeknisiController::class, 'store'])->name('teknisi.store');
+ Route::get('/teknisi/edit/{id}', [App\Http\Controllers\TeknisiController::class, 'edit'])->name('teknisi.edit');
+ Route::put('/teknisi/update/{id}', [App\Http\Controllers\TeknisiController::class, 'update'])->name('teknisi.update');
+ Route::delete('/teknisi/destroy/{id}', [App\Http\Controllers\TeknisiController::class, 'destroy'])->name('teknisi.destroy');
 });

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Teknisi;
+use App\Http\Requests\TeknisiRequest;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class TeknisiController extends Controller
 {
@@ -13,7 +16,10 @@ class TeknisiController extends Controller
      */
     public function index()
     {
-        //
+        $teknisi = Teknisi::all();
+        return view('pages.teknisi.index')->with([
+            'teknisi' => $teknisi
+        ]);
     }
 
     /**
@@ -23,7 +29,7 @@ class TeknisiController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.teknisi.create');
     }
 
     /**
@@ -32,9 +38,11 @@ class TeknisiController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TeknisiRequest $request)
     {
-        //
+        Teknisi::create($request->validated());
+
+        return redirect()->route('teknisi');
     }
 
     /**
@@ -56,7 +64,10 @@ class TeknisiController extends Controller
      */
     public function edit($id)
     {
-        //
+        $teknisi =  Teknisi::findOrFail($id);
+        return view('pages.teknisi.edit')->with([
+            'teknisi' => $teknisi
+        ]);
     }
 
     /**
@@ -66,9 +77,12 @@ class TeknisiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(TeknisiRequest $request, $id)
     {
-        //
+        $teknisi = Teknisi::findOrFail($id);
+        $teknisi->update($request->validated());
+
+        return redirect()->route('teknisi');
     }
 
     /**
@@ -79,6 +93,9 @@ class TeknisiController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $teknisi = Teknisi::findOrFail($id);
+        $teknisi->delete();
+
+        return redirect()->route('teknisi');
     }
 }

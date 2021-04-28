@@ -13,7 +13,7 @@ class TeknisiRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,9 @@ class TeknisiRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'nama_teknisi' => 'required|max:225',
+            'telp' => 'required|max:225',
+            'alamat' => 'required|max:225'
         ];
     }
 }
