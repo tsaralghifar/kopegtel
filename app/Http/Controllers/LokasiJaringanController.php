@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\LokasiJaringanRequest;
+use App\Models\Lokasi;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class LokasiJaringanController extends Controller
 {
@@ -13,7 +16,10 @@ class LokasiJaringanController extends Controller
      */
     public function index()
     {
-        //
+        $lokasi = Lokasi::all();
+        return view('pages.lokasi.index')->with([
+            'lokasi' => $lokasi
+        ]);
     }
 
     /**
@@ -23,7 +29,7 @@ class LokasiJaringanController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.lokasi.create');
     }
 
     /**
@@ -32,9 +38,11 @@ class LokasiJaringanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(LokasiJaringanRequest $request)
     {
-        //
+        Lokasi::create($request->validated());
+
+        return redirect(route('lokasi'));
     }
 
     /**
@@ -56,7 +64,10 @@ class LokasiJaringanController extends Controller
      */
     public function edit($id)
     {
-        //
+        $lokasi =  Lokasi::findOrFail($id);
+        return view('pages.lokasi.edit')->with([
+            'lokasi' => $lokasi
+        ]);
     }
 
     /**
@@ -66,9 +77,12 @@ class LokasiJaringanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(LokasiJaringanRequest $request, $id)
     {
-        //
+        $lokasi = Lokasi::findOrFail($id);
+        $lokasi->update($request->validated());
+
+        return redirect()->route('lokasi');
     }
 
     /**
@@ -79,6 +93,9 @@ class LokasiJaringanController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $lokasi = Lokasi::findOrFail($id);
+        $lokasi->delete();
+
+        return redirect()->route('lokasi');
     }
 }

@@ -167,7 +167,7 @@ to get the desired effect
               </ul>
             </li> --}}
             <li class="nav-item">
-              <a href="" class="nav-link">
+              <a href="{{route('lokasi')}}" class="nav-link">
                 <i class="nav-icon fas fa-calendar-alt"></i>
                 <p>
                   Lokasi Jaringan

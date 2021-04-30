@@ -13,7 +13,7 @@ class LokasiJaringanRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,8 @@ class LokasiJaringanRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'nama_lokasi' => 'required|string|max:255',
+            'koordinat' => 'required|string'
         ];
     }
 }

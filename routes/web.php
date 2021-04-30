@@ -46,4 +46,12 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
  Route::get('/teknisi/edit/{id}', [App\Http\Controllers\TeknisiController::class, 'edit'])->name('teknisi.edit');
  Route::put('/teknisi/update/{id}', [App\Http\Controllers\TeknisiController::class, 'update'])->name('teknisi.update');
  Route::delete('/teknisi/destroy/{id}', [App\Http\Controllers\TeknisiController::class, 'destroy'])->name('teknisi.destroy');
+ // Lokasi
+ Route::get('/lokasi', [App\Http\Controllers\LokasiJaringanController::class, 'index'])->name('lokasi');
+ Route::get('/lokasi/pdf', [App\Http\Controllers\LokasiJaringanController::class, 'createPDF'])->name('lokasi.pdf');
+ Route::get('/lokasi/create', [App\Http\Controllers\LokasiJaringanController::class, 'create'])->name('lokasi.create');
+ Route::post('/lokasi/store', [App\Http\Controllers\LokasiJaringanController::class, 'store'])->name('lokasi.store');
+ Route::get('/lokasi/edit/{id}', [App\Http\Controllers\LokasiJaringanController::class, 'edit'])->name('lokasi.edit');
+ Route::put('/lokasi/update/{id}', [App\Http\Controllers\LokasiJaringanController::class, 'update'])->name('lokasi.update');
+ Route::delete('/lokasi/destroy/{id}', [App\Http\Controllers\LokasiJaringanController::class, 'destroy'])->name('lokasi.destroy');
 });
