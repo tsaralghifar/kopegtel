@@ -41,8 +41,10 @@ class PasangController extends Controller
      */
     public function store(PasangRequest $request)
     {
-        Pasang::create($request->validated());
-
+        $data = $request->validated();
+        $data['no_inet'] = 'NM' . mt_rand(10000,99999) . mt_rand(100,999);
+        
+        Pasang::create($data);
         return redirect()->route('pasang');
     }
 

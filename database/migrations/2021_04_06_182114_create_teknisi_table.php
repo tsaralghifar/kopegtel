@@ -16,7 +16,7 @@ class CreateTeknisiTable extends Migration
         Schema::create('teknisi', function (Blueprint $table) {
             $table->id();
             $table->string('nama_teknisi');
-            $table->integer('telp');
+            $table->string('telp');
             $table->longText('alamat');
             $table->timestamps();
         });

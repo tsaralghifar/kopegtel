@@ -19,7 +19,7 @@ class CreatePasangTable extends Migration
             $table->string('nama_pelanggan');
             $table->string('paket');
             $table->longText('alamat');
-            $table->integer('telp');
+            $table->string('telp');
             $table->timestamps();
         });
     }

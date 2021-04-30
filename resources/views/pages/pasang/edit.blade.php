@@ -18,14 +18,7 @@
                             wire:submit.prevent="saveLocation"
                         @endif --}}
                     
-                        <div class="form-group">
-                            <label>No Ineternet</label>
-                            <input type="text"
-                                   name="no_inet"
-                                   value="{{ old('no_inet') ? old('no_inet') : $pasang->no_inet }}"
-                                   class="form-control @error('no_inet') is-invalid @enderror"/>
-                                   @error('no_inet') <div class="text-muted">{{ $message }}</div> @enderror
-                        </div>
+                        
                         <div class="form-group">
                             <label>Nama</label>
                             <input type="text"
