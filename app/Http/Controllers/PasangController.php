@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\GenericHelper;
 use Illuminate\Http\Request;
 use App\Models\Pasang;
 use App\Models\Layanan;
@@ -42,7 +43,7 @@ class PasangController extends Controller
     public function store(PasangRequest $request)
     {
         $data = $request->validated();
-        $data['no_inet'] = 'NM' . mt_rand(10000,99999) . mt_rand(100,999);
+        $data['no_inet'] = GenericHelper::idGenerator('NM');
         
         Pasang::create($data);
         return redirect()->route('pasang');
